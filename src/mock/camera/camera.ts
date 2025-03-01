@@ -1,4 +1,6 @@
-export const CamerMock = [
+import { Cameras } from '../../types/camera';
+
+export const CameraMock : Cameras = [
   {
     'id': 1,
     'name': 'Ретрокамера Dus Auge lV',
