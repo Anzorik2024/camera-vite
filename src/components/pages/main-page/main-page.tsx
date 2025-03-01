@@ -1,6 +1,8 @@
 import Header from '../../header/header';
 import Banner from '../../banner/banner';
 import BreadCrumbs from '../../bread-crumbs/bread-crumbs';
+import { cameraMock } from '../../../mock/camera/camera';
+import ProductCard from '../../product-card/product-card';
 
 function MainPage ():JSX.Element {
   return (
@@ -19,7 +21,7 @@ function MainPage ():JSX.Element {
                 </div>
                 <div className="catalog__content">
                   <div className="cards catalog__cards">
-
+                    {cameraMock.map((camera) => <ProductCard camera={camera} key={camera.id} />)}
                   </div>
                 </div>
               </div>
