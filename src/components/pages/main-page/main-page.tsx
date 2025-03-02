@@ -3,6 +3,7 @@ import Banner from '../../banner/banner';
 import BreadCrumbs from '../../bread-crumbs/bread-crumbs';
 import { cameraMock } from '../../../mock/camera/camera';
 import ProductCard from '../../product-card/product-card';
+import Footer from '../../footer/footer';
 
 function MainPage ():JSX.Element {
   return (
@@ -27,9 +28,9 @@ function MainPage ():JSX.Element {
               </div>
             </div>
           </section>
-
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
