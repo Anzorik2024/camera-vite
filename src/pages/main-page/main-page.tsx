@@ -1,9 +1,9 @@
-import Header from '../../header/header';
-import Banner from '../../banner/banner';
-import BreadCrumbs from '../../bread-crumbs/bread-crumbs';
-import { cameraMock } from '../../../mock/camera/camera';
-import ProductCard from '../../product-card/product-card';
-import Footer from '../../footer/footer';
+import Header from '../../components/header/header';
+import Banner from '../../components/banner/banner';
+import BreadCrumbs from '../../components/bread-crumbs/bread-crumbs';
+import { cameraMock } from '../../mock/camera/camera';
+import ProductCard from '../../components/product-card/product-card';
+import Footer from '../../components/footer/footer';
 
 function MainPage ():JSX.Element {
   return (
