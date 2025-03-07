@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { AppRoute } from '../../const/app-route';
 
 
 function Header () : JSX.Element {
