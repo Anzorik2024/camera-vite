@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom';
-
-
 function Header () : JSX.Element {
   return (
     <header className="header" id="header">
