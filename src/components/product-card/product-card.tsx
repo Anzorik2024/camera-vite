@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
+
 import { Camera } from '../../types/camera';
 import { formatPrice, capitalizeFirstLetter } from '../../utils/format';
 import IconStar from '../icon-star/icon-star';
-
+import { AppRoute } from '../../const/app-route';
 
 type ProductCardProps = {
   camera: Camera;
@@ -11,7 +13,7 @@ const STAR_MAX = 5;
 
 function ProductCard ({camera} :ProductCardProps): JSX.Element {
 
-  const {name, rating, price, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, reviewCount } = camera; // вытащить id, когда добавлю роутинг
+  const {name, rating, price, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, reviewCount,id} = camera;
 
   const getStarsRating = (): JSX.Element => {
     const stars = [];
@@ -51,8 +53,8 @@ function ProductCard ({camera} :ProductCardProps): JSX.Element {
       <div className="product-card__buttons">
         <button className="btn btn--purple product-card__btn" type="button">Купить
         </button>
-        <a className="btn btn--transparent" href="#">Подробнее
-        </a>
+        <Link className="btn btn--transparent" to = {`${AppRoute.Product}/${id}`}>Подробнее
+        </Link>
       </div>
     </div>
   );

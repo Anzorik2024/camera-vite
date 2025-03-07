@@ -1,8 +1,15 @@
+import { useParams } from 'react-router-dom';
+
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import BreadCrumbsProduct from '../../components/bread-crumbs/bread-crumbs-product';
 
 function ProductPage():JSX.Element {
+
+  const { id } = useParams<{ id: string }>();
+
+  console.log(id);
+
   return (
     <div className="wrapper">
       <Header />
