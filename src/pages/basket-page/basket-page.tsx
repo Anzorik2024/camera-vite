@@ -1,4 +1,4 @@
-import Footer from '../../footer/footer';
+import Footer from '../../components/footer/footer';
 
 function BasketPage() : JSX.Element {
   return (
