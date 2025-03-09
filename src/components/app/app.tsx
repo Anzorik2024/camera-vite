@@ -1,16 +1,33 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import { useActionCreators } from '../../hooks/use-action-creators';
 import MainPage from '../../pages/main-page/main-page';
 import ProductPage from '../../pages/product-page/product-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import BasketPage from '../../pages/basket-page/basket-page';
-import { ToastContainer} from 'react-toastify'; // toast - add
+import { ToastContainer, toast} from 'react-toastify';
+import { WarningMessage } from '../../const/warning-message';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { AppRoute } from '../../const/app-route';
+import { catalogReducerAction } from '../../store/catalog-slice/catalog-slice';
 
 
 function App (): JSX.Element {
+
+  const { fetchAllCameraAction } = useActionCreators(catalogReducerAction);
+
+  useEffect(() => {
+    fetchAllCameraAction()
+      .unwrap()
+      .catch(() => {
+        toast.error(WarningMessage.DataLoadingWarning);
+      });
+
+  }, [fetchAllCameraAction]);
+
+
   return (
     <BrowserRouter>
       <ToastContainer />
