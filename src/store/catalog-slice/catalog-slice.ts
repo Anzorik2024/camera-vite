@@ -35,6 +35,7 @@ const catalogSlice = createSlice({
 });
 
 const catalogReducer = catalogSlice.reducer;
+
 const catalogReducerAction = {
   fetchAllCameraAction
 };
