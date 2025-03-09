@@ -1,11 +1,14 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { useActionCreators } from '../../hooks/use-action-creators';
+import { useActionCreators} from '../../hooks/use-action-creators';
+import { useAppSelector } from '../../hooks/use-app-selector';
+import Spiner from '../spiner/spiner';
 import MainPage from '../../pages/main-page/main-page';
 import ProductPage from '../../pages/product-page/product-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import BasketPage from '../../pages/basket-page/basket-page';
+import { selectIsLoading } from '../../store/selectors';
 import { ToastContainer, toast} from 'react-toastify';
 import { WarningMessage } from '../../const/warning-message';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,6 +29,15 @@ function App (): JSX.Element {
       });
 
   }, [fetchAllCameraAction]);
+
+
+  const isLoading = useAppSelector(selectIsLoading);
+
+  if (isLoading) {
+    return (
+      <Spiner />
+    );
+  }
 
 
   return (

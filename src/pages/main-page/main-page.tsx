@@ -1,11 +1,15 @@
 import Header from '../../components/header/header';
 import Banner from '../../components/banner/banner';
 import BreadCrumbs from '../../components/bread-crumbs/bread-crumbs';
-import { cameraMock } from '../../mock/camera/camera';
 import ProductCard from '../../components/product-card/product-card';
 import Footer from '../../components/footer/footer';
+import { useAppSelector } from '../../hooks/use-app-selector';
+import { selectCameras } from '../../store/selectors';
 
 function MainPage ():JSX.Element {
+
+  const camerasCatalog = useAppSelector(selectCameras);
+
   return (
     <div className="wrapper">
       <Header />
@@ -22,7 +26,7 @@ function MainPage ():JSX.Element {
                 </div>
                 <div className="catalog__content">
                   <div className="cards catalog__cards">
-                    {cameraMock.map((camera) => <ProductCard camera={camera} key={camera.id} />)}
+                    {camerasCatalog.map((camera) => <ProductCard camera={camera} key={camera.id} />)}
                   </div>
                 </div>
               </div>
