@@ -6,12 +6,12 @@ import { RequestStatus } from '../../const/request-status';
 
 
 type initialStateProduct = {
-  camera:null | Camera;
+  camera: Camera | null ;
   status: RequestStatus;
 };
 
 const initialState: initialStateProduct = {
-  camera: {} as Camera,
+  camera: null,
   status: RequestStatus.Idle
 };
 
@@ -44,3 +44,4 @@ export {
   productDataActions,
   productDataReducer
 };
+

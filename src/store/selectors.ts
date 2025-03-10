@@ -3,6 +3,7 @@ import { State } from '../types/state/state';
 const selectCameras = (state: State) => state.catalog.cameras;
 const selectIsLoading = (state: State) => state.catalog.isLoading;
 const selectProductCamera = (state: State) => state.product.camera;
+//const selectProductLoading = (state: State) => state.product.isQuestsLoading;
 const selectProductStatus = (state: State) => state.product.status;
 
-export { selectCameras, selectIsLoading,selectProductCamera, selectProductStatus };
+export { selectCameras, selectIsLoading,selectProductCamera,selectProductStatus};

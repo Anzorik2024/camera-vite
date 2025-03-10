@@ -4,7 +4,8 @@ import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import Spiner from '../../components/spiner/spiner';
 import { RequestStatus } from '../../const/request-status';
-import { selectProductStatus, selectProductCamera} from '../../store/selectors';
+import { selectProductStatus} from '../../store/selectors';
+import { State } from '../../types/state/state';
 import { useActionCreators } from '../../hooks/use-action-creators';
 import { productDataActions } from '../../store/product-slice/product-slice';
 import Header from '../../components/header/header';
@@ -17,7 +18,9 @@ function ProductPage():JSX.Element {
   const status = useAppSelector(selectProductStatus);
 
   const { fetchCameraByIdAction } = useActionCreators(productDataActions);
-  const { product } = useAppSelector(selectProductCamera);
+  const selectProductCamera = (state: State) => state.product.camera;
+  const dataCamera = useAppSelector(selectProductCamera);
+
 
   const { id } = useParams<{ id: string }>();
 
@@ -37,7 +40,7 @@ function ProductPage():JSX.Element {
   }
 
 
-  console.log(product);
+  console.log(dataCamera);
   return (
     <div className="wrapper">
       <Header />
