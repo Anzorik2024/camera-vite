@@ -9,3 +9,5 @@ export const fetchAllCameraAction = createAsyncThunk<Cameras, undefined, {dispat
   const { data } = await api.get<Cameras>(ApiRoute.Cameras);
   return data;
 });
+
+

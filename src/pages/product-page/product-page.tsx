@@ -1,15 +1,43 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { useAppSelector } from '../../hooks/use-app-selector';
+import Spiner from '../../components/spiner/spiner';
+import { RequestStatus } from '../../const/request-status';
+import { selectProductStatus, selectProductCamera} from '../../store/selectors';
+import { useActionCreators } from '../../hooks/use-action-creators';
+import { productDataActions } from '../../store/product-slice/product-slice';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import BreadCrumbsProduct from '../../components/bread-crumbs/bread-crumbs-product';
+import NotFoundPage from '../not-found-page/not-found-page';
 
 function ProductPage():JSX.Element {
 
+  const status = useAppSelector(selectProductStatus);
+
+  const { fetchCameraByIdAction } = useActionCreators(productDataActions);
+  const { product } = useAppSelector(selectProductCamera);
+
   const { id } = useParams<{ id: string }>();
 
-  console.log(id);
+  useEffect(() => {
+    if(id) {
+      fetchCameraByIdAction(id);
+    }
+  }, [fetchCameraByIdAction, id]);
 
+  if (status === RequestStatus.Loading) {
+    return (
+      <Spiner />
+    );
+  }
+  if (status === RequestStatus.Failed) {
+    return <NotFoundPage />;
+  }
+
+
+  console.log(product);
   return (
     <div className="wrapper">
       <Header />
