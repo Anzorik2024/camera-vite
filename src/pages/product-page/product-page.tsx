@@ -4,8 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import Spiner from '../../components/spiner/spiner';
 import { RequestStatus } from '../../const/request-status';
-import { selectProductStatus} from '../../store/selectors';
-import { State } from '../../types/state/state';
+import { selectProductStatus, selectProductCamera} from '../../store/selectors';
 import { useActionCreators } from '../../hooks/use-action-creators';
 import { productDataActions } from '../../store/product-slice/product-slice';
 import Header from '../../components/header/header';
@@ -13,14 +12,12 @@ import Footer from '../../components/footer/footer';
 import BreadCrumbsProduct from '../../components/bread-crumbs/bread-crumbs-product';
 import NotFoundPage from '../not-found-page/not-found-page';
 
+
 function ProductPage():JSX.Element {
 
   const status = useAppSelector(selectProductStatus);
-
   const { fetchCameraByIdAction } = useActionCreators(productDataActions);
-  const selectProductCamera = (state: State) => state.product.camera;
   const dataCamera = useAppSelector(selectProductCamera);
-
 
   const { id } = useParams<{ id: string }>();
 
