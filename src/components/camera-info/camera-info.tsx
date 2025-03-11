@@ -2,6 +2,7 @@ import { Camera } from '../../types/camera';
 import { capitalizeFirstLetter } from '../../utils/format';
 import CameraRating from '../camera-rating/camera-rating';
 import { formatPrice } from '../../utils/format';
+import Tabs from '../tabs/tabs';
 
 
 type CameraInfoProps = {
@@ -48,6 +49,7 @@ function CameraInfo ({camera}: CameraInfoProps) : JSX.Element {
             </svg>
                 Добавить в корзину
           </button>
+          <Tabs camera={camera}/>
         </div>
 
       </div>
