@@ -11,13 +11,14 @@ import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import BreadCrumbsProduct from '../../components/bread-crumbs/bread-crumbs-product';
 import NotFoundPage from '../not-found-page/not-found-page';
+import CameraInfo from '../../components/camera-info/camera-info';
 
 
 function ProductPage():JSX.Element {
 
   const status = useAppSelector(selectProductStatus);
   const { fetchCameraByIdAction } = useActionCreators(productDataActions);
-  const dataCamera = useAppSelector(selectProductCamera);
+  const camera = useAppSelector(selectProductCamera);
 
   const { id } = useParams<{ id: string }>();
 
@@ -36,8 +37,6 @@ function ProductPage():JSX.Element {
     return <NotFoundPage />;
   }
 
-
-  console.log(dataCamera);
   return (
     <div className="wrapper">
       <Header />
@@ -45,7 +44,8 @@ function ProductPage():JSX.Element {
         <div className="page-content">
           <BreadCrumbsProduct />
           <div className="page-content__section">
-            <section className="product">
+            {camera ? <CameraInfo camera={camera} /> : null}
+            {/* <section className="product">
               <div className="container">
                 <div className="product__img">
                   <picture>
@@ -111,7 +111,7 @@ function ProductPage():JSX.Element {
                   </div>
                 </div>
               </div>
-            </section>
+            </section> */}
           </div>
         </div>
       </main>
