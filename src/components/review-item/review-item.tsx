@@ -1,5 +1,6 @@
 import { Review } from '../../types/camera';
 import { formatReviewDate } from '../../utils/format';
+import StarsRating from '../stars-rating/stars-rating';
 
 type ReviewItemProps = {
   reviewData: Review;
@@ -18,6 +19,12 @@ function ReviewItem({ reviewData }: ReviewItemProps): JSX.Element {
         <time className="review-card__data" dateTime={date.toISOString()}>
           {formatReviewDate(date)}
         </time>
+      </div>
+      <div className="rate review-card__rate">
+        <StarsRating
+          rating={rating}
+        />
+        <p className="visually-hidden">Оценка: {rating}</p>
       </div>
     </li>
   );
