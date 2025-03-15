@@ -24,4 +24,5 @@ function ReviewItem({ reviewData }: ReviewItemProps): JSX.Element {
 }
 
 
-export default ReviewItem
+export default ReviewItem;
+
