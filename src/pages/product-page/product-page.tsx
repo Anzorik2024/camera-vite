@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import Spiner from '../../components/spiner/spiner';
 import { RequestStatus } from '../../const/request-status';
-import { selectProductStatus, selectProductCamera} from '../../store/selectors';
+import { selectProductStatus, selectProductCamera, selectCameraReviews} from '../../store/selectors';
 import { useActionCreators } from '../../hooks/use-action-creators';
 import { productDataActions } from '../../store/product-slice/product-slice';
 import Header from '../../components/header/header';
@@ -17,16 +17,20 @@ import CameraInfo from '../../components/camera-info/camera-info';
 function ProductPage():JSX.Element {
 
   const status = useAppSelector(selectProductStatus);
-  const { fetchCameraByIdAction } = useActionCreators(productDataActions);
+  const { fetchCameraByIdAction, fetchCameraReviews } = useActionCreators(productDataActions);
   const camera = useAppSelector(selectProductCamera);
+  const reviews = useAppSelector(selectCameraReviews);
 
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
     if(id) {
-      fetchCameraByIdAction(id);
+      Promise.all([
+        fetchCameraByIdAction(id),
+        fetchCameraReviews(id),
+      ]);
     }
-  }, [fetchCameraByIdAction, id]);
+  }, [fetchCameraByIdAction, fetchCameraReviews, id]);
 
   if (status === RequestStatus.Loading) {
     return (
@@ -37,6 +41,7 @@ function ProductPage():JSX.Element {
     return <NotFoundPage />;
   }
 
+  console.log(reviews);
   return (
     <div className="wrapper">
       <Header />
