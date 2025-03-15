@@ -15,7 +15,7 @@ export type Camera = {
   reviewCount: number;
 }
 
-type Review = {
+export type Review = {
   id:string;
   userName: string;
   advantage: string;
