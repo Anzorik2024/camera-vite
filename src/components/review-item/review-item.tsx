@@ -1,6 +1,7 @@
 import { Review } from '../../types/camera';
 import { formatReviewDate } from '../../utils/format';
 import StarsRating from '../stars-rating/stars-rating';
+import { ReviewItemTitle } from '../../const/review-item-title';
 
 type ReviewItemProps = {
   reviewData: Review;
@@ -9,6 +10,12 @@ type ReviewItemProps = {
 
 function ReviewItem({ reviewData }: ReviewItemProps): JSX.Element {
   const {userName, advantage, disadvantage, createAt, rating, review} = reviewData ;
+
+  const reviewItem = {
+    advantage,
+    disadvantage,
+    review
+  } as const;
 
   const date = new Date(createAt);
 
@@ -26,6 +33,22 @@ function ReviewItem({ reviewData }: ReviewItemProps): JSX.Element {
         />
         <p className="visually-hidden">Оценка: {rating}</p>
       </div>
+      <ul className="review-card__list">
+
+        {Object.values(ReviewItemTitle).map((title, index) => {
+          const content = Object.values(reviewItem)[index];
+          const key = Object.keys(ReviewItemTitle)[index];
+
+          return (
+            <li className="item-list" key={key}>
+              <span className="item-list__title">{title}</span>
+              <p className="item-list__text">
+                {content}
+              </p>
+            </li>
+          );
+        })}
+      </ul>
     </li>
   );
 }
