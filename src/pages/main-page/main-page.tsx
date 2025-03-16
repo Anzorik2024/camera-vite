@@ -21,6 +21,7 @@ function MainPage ():JSX.Element {
 
   const closeAddCameraToBasketModal = () => {
     setModalAddCameraToBasketOpen(false);
+    //dispatch(selectCamera(null));
   };
 
   return (
@@ -47,7 +48,7 @@ function MainPage ():JSX.Element {
           </section>
         </div>
         <div className={`modal ${isModalAddCameraToBasketOpen ? 'is-active' : ''}`}>
-          <BasketModal/>
+          <BasketModal onCloseModal={closeAddCameraToBasketModal}/>
         </div>
       </main>
       <Footer />

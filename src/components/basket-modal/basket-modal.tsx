@@ -1,4 +1,13 @@
-function BasketModal() : JSX.Element {
+type BasketModalProps = {
+  onCloseModal: () => void;
+}
+
+function BasketModal({ onCloseModal }: BasketModalProps) : JSX.Element {
+
+  const handleModalCloseClick = () => {
+    onCloseModal();
+  };
+
   return (
     <div className="modal__wrapper">
       <div className="modal__overlay"></div>
@@ -40,7 +49,7 @@ function BasketModal() : JSX.Element {
             </svg>Заказать
           </button>
         </div>
-        <button className="cross-btn" type="button" aria-label="Закрыть попап">
+        <button className="cross-btn" type="button" aria-label="Закрыть попап" onClick={handleModalCloseClick}>
           <svg width="10" height="10" aria-hidden="true">
             <use xlinkHref="#icon-close"></use>
           </svg>
