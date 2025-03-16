@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { STAR_MAX } from '../../const/const';
 
 type StarsRatingProps = {
@@ -5,16 +7,19 @@ type StarsRatingProps = {
 }
 
 function StarsRating({ rating }: StarsRatingProps): JSX.Element {
-  const stars = [];
+  const stars = Array.from({ length: STAR_MAX }, (_, i) => (
+    <svg
+      width={17}
+      height={16}
+      aria-hidden="true"
+      data-testid="star"
+      key={i}
+    >
+      <use xlinkHref={i < rating ? '#icon-full-star' : '#icon-star'} />
+    </svg>
+  ));
 
-  for(let i = 0; i < STAR_MAX; i++) {
-    stars.push(
-      <svg width={17} height={16} aria-hidden="true" data-testid="star" key={i}>
-        <use xlinkHref={ i < rating ? '#icon-full-star' : '#icon-star'}/>
-      </svg>);
-  }
-
-  return <div>{stars}</div> ;
+  return <React.Fragment key="stars">{stars}</React.Fragment>;
 }
 
 export default StarsRating;
