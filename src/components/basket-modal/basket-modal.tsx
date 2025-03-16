@@ -1,5 +1,8 @@
-import useOnClickOutside from '../../hooks/use-click-outside';
 import { useRef} from 'react';
+
+import useOnClickOutside from '../../hooks/use-on-click-outside';
+import { useKeydownEscClose } from '../../hooks/use-keydown-esc-close';
+
 
 
 type BasketModalProps = {
@@ -15,6 +18,7 @@ function BasketModal({ onCloseModal}: BasketModalProps) : JSX.Element {
   };
 
   useOnClickOutside(modalRef, handleModalCloseClick);
+  useKeydownEscClose(handleModalCloseClick);
 
   return (
     <div className="modal__wrapper">
