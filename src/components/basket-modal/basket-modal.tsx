@@ -4,7 +4,6 @@ import useOnClickOutside from '../../hooks/use-on-click-outside';
 import { useKeydownEscClose } from '../../hooks/use-keydown-esc-close';
 
 
-
 type BasketModalProps = {
   onCloseModal: () => void;
 }
