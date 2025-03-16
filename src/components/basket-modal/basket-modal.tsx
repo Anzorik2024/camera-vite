@@ -1,17 +1,25 @@
+import useOnClickOutside from '../../hooks/use-click-outside';
+import { useRef} from 'react';
+
+
 type BasketModalProps = {
   onCloseModal: () => void;
 }
 
-function BasketModal({ onCloseModal }: BasketModalProps) : JSX.Element {
+function BasketModal({ onCloseModal}: BasketModalProps) : JSX.Element {
+
+  const modalRef = useRef(null);
 
   const handleModalCloseClick = () => {
     onCloseModal();
   };
 
+  useOnClickOutside(modalRef, handleModalCloseClick);
+
   return (
     <div className="modal__wrapper">
       <div className="modal__overlay"></div>
-      <div className="modal__content">
+      <div className="modal__content" ref={modalRef}>
         <p className="title title--h4">Свяжитесь со мной</p>
         <div className="basket-item basket-item--short">
           <div className="basket-item__img">

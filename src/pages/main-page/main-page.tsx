@@ -1,4 +1,4 @@
-import { useState } from'react';
+import { useState, useRef } from'react';
 
 import Header from '../../components/header/header';
 import Banner from '../../components/banner/banner';
@@ -8,12 +8,15 @@ import Footer from '../../components/footer/footer';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { selectCameras } from '../../store/selectors';
 import BasketModal from '../../components/basket-modal/basket-modal';
+import useDisableBackground from '../../hooks/use-disable-background';
 
 
 function MainPage ():JSX.Element {
 
   const [isModalAddCameraToBasketOpen, setModalAddCameraToBasketOpen] = useState<boolean>(false);
+  const modalRef = useRef(null);
   const camerasCatalog = useAppSelector(selectCameras);
+
 
   const handleAddCameraToBasketButtonClick = () => {
     setModalAddCameraToBasketOpen(true);
@@ -23,6 +26,8 @@ function MainPage ():JSX.Element {
     setModalAddCameraToBasketOpen(false);
     //dispatch(selectCamera(null));
   };
+
+  useDisableBackground(isModalAddCameraToBasketOpen);
 
   return (
     <div className="wrapper">
@@ -47,8 +52,8 @@ function MainPage ():JSX.Element {
             </div>
           </section>
         </div>
-        <div className={`modal ${isModalAddCameraToBasketOpen ? 'is-active' : ''}`}>
-          <BasketModal onCloseModal={closeAddCameraToBasketModal}/>
+        <div className={`modal ${isModalAddCameraToBasketOpen ? 'is-active' : ''}`} ref={modalRef}>
+          <BasketModal onCloseModal={closeAddCameraToBasketModal} />
         </div>
       </main>
       <Footer />
