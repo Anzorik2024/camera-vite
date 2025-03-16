@@ -1,4 +1,4 @@
-import { useRef} from 'react';
+import { useRef, useEffect} from 'react';
 
 import useOnClickOutside from '../../hooks/use-on-click-outside';
 import { useKeydownEscClose } from '../../hooks/use-keydown-esc-close';
@@ -11,6 +11,7 @@ type BasketModalProps = {
 function BasketModal({ onCloseModal}: BasketModalProps) : JSX.Element {
 
   const modalRef = useRef(null);
+  const telInputRef = useRef<HTMLInputElement>(null);
 
   const handleModalCloseClick = () => {
     onCloseModal();
@@ -18,6 +19,12 @@ function BasketModal({ onCloseModal}: BasketModalProps) : JSX.Element {
 
   useOnClickOutside(modalRef, handleModalCloseClick);
   useKeydownEscClose(handleModalCloseClick);
+
+  useEffect(() => {
+    if (telInputRef && telInputRef.current) {
+      telInputRef.current.focus();
+    }
+  }, []);
 
   return (
     <div className="modal__wrapper">
@@ -49,7 +56,7 @@ function BasketModal({ onCloseModal}: BasketModalProps) : JSX.Element {
                 <use xlinkHref="#icon-snowflake"></use>
               </svg>
             </span>
-            <input type="tel" name="user-tel" placeholder="Введите ваш номер" required/>
+            <input type="tel" name="user-tel" placeholder="Введите ваш номер" required ref={telInputRef}/>
           </label>
           <p className="custom-input__error">Нужно указать номер</p>
         </div>
