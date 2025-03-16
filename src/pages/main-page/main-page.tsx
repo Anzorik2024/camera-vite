@@ -5,6 +5,7 @@ import ProductCard from '../../components/product-card/product-card';
 import Footer from '../../components/footer/footer';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { selectCameras } from '../../store/selectors';
+import BasketModal from '../../components/basket-modal/basket-modal';
 
 function MainPage ():JSX.Element {
 
@@ -32,6 +33,9 @@ function MainPage ():JSX.Element {
               </div>
             </div>
           </section>
+        </div>
+        <div className="modal is-active">
+          <BasketModal/>
         </div>
       </main>
       <Footer />
