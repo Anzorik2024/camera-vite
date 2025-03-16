@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { Camera } from '../../types/camera';
@@ -20,7 +21,7 @@ function ProductCard ({camera} :ProductCardProps): JSX.Element {
     for(let i = 0; i < STAR_MAX; i++) {
       stars.push(<IconStar isFull={i < rating} key={i}/>);
     }
-    return <div>{stars}</div> ;
+    return <React.Fragment key="stars">{stars}</React.Fragment> ;
   };
 
   return (

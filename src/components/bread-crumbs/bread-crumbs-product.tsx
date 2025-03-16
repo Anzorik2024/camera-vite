@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/app-route';
-import App from '../app/app';
 
 function BreadCrumbsProduct () : JSX.Element {
   return (
