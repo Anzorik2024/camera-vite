@@ -16,7 +16,7 @@ export type Camera = {
 }
 
 export type Review = {
-  id:string;
+  id: string;
   userName: string;
   advantage: string;
   disadvantage: string;
@@ -24,11 +24,9 @@ export type Review = {
   rating: number;
   createAt: string;
   cameraId: number;
-}
-
-export type ReviewAdapt = Review & {
-  createAt: Date;
 };
+
+export type ReviewAdapt = Omit<Review, 'createAt'> & { createAt: Date };
 
 export type ReviewsAdapt = ReviewAdapt[];
 
