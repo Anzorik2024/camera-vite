@@ -53,7 +53,7 @@ function MainPage ():JSX.Element {
           </section>
         </div>
         <div className={`modal ${isModalAddCameraToBasketOpen ? 'is-active' : ''}`} ref={modalRef}>
-          <BasketModal onCloseModal={closeAddCameraToBasketModal} />
+          <BasketModal onCloseModal={closeAddCameraToBasketModal} isOpen={isModalAddCameraToBasketOpen} />
         </div>
       </main>
       <Footer />
