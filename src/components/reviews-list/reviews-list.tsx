@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-import { Reviews } from '../../types/camera';
+import { ReviewsAdapt } from '../../types/camera';
 import { ContentPerItem } from '../../const/content-per-item';
 import ReviewItem from '../review-item/review-item';
 
 type ReviewListProps = {
-  reviews: Reviews;
+  reviews: ReviewsAdapt;
 }
 
 function ReviewsList({reviews}: ReviewListProps): JSX.Element {

@@ -1,8 +1,8 @@
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { selectCameraReviews } from '../../store/selectors';
+import { selectSortedReviews } from '../../store/selectors';
 import ReviewsList from '../reviews-list/reviews-list';
 function ReviewBlock(): JSX.Element {
-  const reviews = useAppSelector(selectCameraReviews);
+  const reviews = useAppSelector(selectSortedReviews);
 
   return (
     <section className="review-block">

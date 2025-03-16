@@ -1,10 +1,10 @@
-import { Review } from '../../types/camera';
+import { ReviewAdapt } from '../../types/camera';
 import { formatReviewDate } from '../../utils/format';
 import StarsRating from '../stars-rating/stars-rating';
 import { ReviewItemTitle } from '../../const/review-item-title';
 
 type ReviewItemProps = {
-  reviewData: Review;
+  reviewData: ReviewAdapt;
 }
 
 
@@ -17,14 +17,12 @@ function ReviewItem({ reviewData }: ReviewItemProps): JSX.Element {
     review
   } as const;
 
-  const date = new Date(createAt);
-
   return (
     <li className="review-card">
       <div className="review-card__head">
         <p className="title title--h4">{userName}</p>
-        <time className="review-card__data" dateTime={date.toISOString()}>
-          {formatReviewDate(date)}
+        <time className="review-card__data" dateTime={createAt.toISOString()}>
+          {formatReviewDate(createAt)}
         </time>
       </div>
       <div className="rate review-card__rate">
