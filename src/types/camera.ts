@@ -26,6 +26,12 @@ export type Review = {
   cameraId: number;
 }
 
+export type ReviewAdapt = Review & {
+  createAt: Date;
+};
+
+export type ReviewsAdapt = ReviewAdapt[];
+
 export type Reviews = Review[];
 
 export type Cameras = Camera[];
