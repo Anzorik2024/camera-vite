@@ -8,13 +8,19 @@ import { AppRoute } from '../../const/app-route';
 
 type ProductCardProps = {
   camera: Camera;
+  onAddCameraInBasketClickButton: () => void;
  };
 
 const STAR_MAX = 5;
 
-function ProductCard ({camera} :ProductCardProps): JSX.Element {
+function ProductCard ({camera, onAddCameraInBasketClickButton } :ProductCardProps): JSX.Element {
 
   const {name, rating, price, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, reviewCount,id} = camera;
+
+  const handleAddCameraInBasketButtonClick = () => {
+    //dispatch(selectCamera(camera));
+    onAddCameraInBasketClickButton();
+  };
 
   const getStarsRating = (): JSX.Element => {
     const stars = [];
@@ -52,7 +58,7 @@ function ProductCard ({camera} :ProductCardProps): JSX.Element {
         </p>
       </div>
       <div className="product-card__buttons">
-        <button className="btn btn--purple product-card__btn" type="button">Купить
+        <button className="btn btn--purple product-card__btn" type="button" onClick={handleAddCameraInBasketButtonClick}>Купить
         </button>
         <Link className="btn btn--transparent" to = {`${AppRoute.Product}/${id}`}>Подробнее
         </Link>

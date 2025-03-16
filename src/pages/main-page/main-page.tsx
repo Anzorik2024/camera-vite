@@ -1,3 +1,5 @@
+import { useState } from'react';
+
 import Header from '../../components/header/header';
 import Banner from '../../components/banner/banner';
 import BreadCrumbs from '../../components/bread-crumbs/bread-crumbs';
@@ -7,9 +9,19 @@ import { useAppSelector } from '../../hooks/use-app-selector';
 import { selectCameras } from '../../store/selectors';
 import BasketModal from '../../components/basket-modal/basket-modal';
 
+
 function MainPage ():JSX.Element {
 
+  const [isModalAddCameraToBasketOpen, setModalAddCameraToBasketOpen] = useState<boolean>(false);
   const camerasCatalog = useAppSelector(selectCameras);
+
+  const handleAddCameraToBasketButtonClick = () => {
+    setModalAddCameraToBasketOpen(true);
+  };
+
+  const closeAddCameraToBasketModal = () => {
+    setModalAddCameraToBasketOpen(false);
+  };
 
   return (
     <div className="wrapper">
@@ -27,14 +39,14 @@ function MainPage ():JSX.Element {
                 </div>
                 <div className="catalog__content">
                   <div className="cards catalog__cards">
-                    {camerasCatalog.map((camera) => <ProductCard camera={camera} key={camera.id} />)}
+                    {camerasCatalog.map((camera) => <ProductCard camera={camera} key={camera.id} onAddCameraInBasketClickButton={handleAddCameraToBasketButtonClick} />)}
                   </div>
                 </div>
               </div>
             </div>
           </section>
         </div>
-        <div className="modal is-active">
+        <div className={`modal ${isModalAddCameraToBasketOpen ? 'is-active' : ''}`}>
           <BasketModal/>
         </div>
       </main>
