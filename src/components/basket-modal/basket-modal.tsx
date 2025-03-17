@@ -6,6 +6,7 @@ import useInputFocus from '../../hooks/use-input-focus';
 import useTrapFocus from '../../hooks/use-trap-focus';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { getSelectCamera } from '../../store/selectors';
+import BasketItemShort from '../basket-item-short/basket-item-short';
 
 
 type BasketModalProps = {
@@ -15,8 +16,6 @@ type BasketModalProps = {
 
 function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
   const selectedCamera = useAppSelector(getSelectCamera);
-
-  console.log(selectedCamera);
 
   const modalRef = useRef(null);
   const telInputRef = useRef<HTMLInputElement>(null);
@@ -36,24 +35,7 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
       <div className="modal__overlay"></div>
       <div className="modal__content" ref={modalRef}>
         <p className="title title--h4">Свяжитесь со мной</p>
-        <div className="basket-item basket-item--short">
-          <div className="basket-item__img">
-            <picture>
-              <source type="image/webp" srcSet="img/content/orlenok.webp, img/content/orlenok@2x.webp 2x"/>
-              <img src="img/content/orlenok.jpg" srcSet="img/content/orlenok@2x.jpg 2x" width="140" height="120" alt="Фотоаппарат «Орлёнок»"/>
-            </picture>
-          </div>
-          <div className="basket-item__description">
-            <p className="basket-item__title">Фотоаппарат «Орлёнок»</p>
-            <ul className="basket-item__list">
-              <li className="basket-item__list-item"><span className="basket-item__article">Артикул:</span> <span className="basket-item__number">O78DFGSD832</span>
-              </li>
-              <li className="basket-item__list-item">Плёночная фотокамера</li>
-              <li className="basket-item__list-item">Любительский уровень</li>
-            </ul>
-            <p className="basket-item__price"><span className="visually-hidden">Цена:</span>18 970 ₽</p>
-          </div>
-        </div>
+        {selectedCamera && <BasketItemShort camera={selectedCamera}/>}
         <div className="custom-input form-review__item">
           <label>
             <span className="custom-input__label">Телефон
