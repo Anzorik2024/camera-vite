@@ -1,16 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { fetchAllCameraAction } from '../thunks/catalog-process/catalog-process';
-import { Cameras } from '../../types/camera';
+import { Cameras, Camera } from '../../types/camera';
 
 
 type InitialState = {
   cameras: Cameras | [];
+  selectedCamera: Camera | null;
   isLoading: boolean;
 };
 
 const initialState : InitialState = {
   cameras: [],
+  selectedCamera: null,
   isLoading: false,
 };
 
@@ -18,7 +20,11 @@ const initialState : InitialState = {
 const catalogSlice = createSlice({
   name: 'Catalog',
   initialState,
-  reducers: {},
+  reducers: {
+    selectCamera: (state, action: PayloadAction<Camera|null>) => {
+      state.selectedCamera = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllCameraAction.pending, (state) => {
@@ -37,8 +43,10 @@ const catalogSlice = createSlice({
 const catalogReducer = catalogSlice.reducer;
 
 const catalogReducerAction = {
-  fetchAllCameraAction
+  fetchAllCameraAction,
 };
 
-export { catalogReducer, catalogReducerAction };
+const {selectCamera} = catalogSlice.actions;
+
+export { catalogReducer, catalogReducerAction, selectCamera };
 

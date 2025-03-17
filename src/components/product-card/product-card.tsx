@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 
 import { Camera } from '../../types/camera';
 import { formatPrice, capitalizeFirstLetter } from '../../utils/format';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import IconStar from '../icon-star/icon-star';
 import { AppRoute } from '../../const/app-route';
+import { selectCamera } from '../../store/catalog-slice/catalog-slice';
 
 type ProductCardProps = {
   camera: Camera;
@@ -17,8 +19,10 @@ function ProductCard ({camera, onAddCameraInBasketClickButton } :ProductCardProp
 
   const {name, rating, price, previewImg, previewImg2x, previewImgWebp, previewImgWebp2x, reviewCount,id} = camera;
 
+  const dispatch = useAppDispatch();
+
   const handleAddCameraInBasketButtonClick = () => {
-    //dispatch(selectCamera(camera));
+    dispatch(selectCamera(camera));
     onAddCameraInBasketClickButton();
   };
 

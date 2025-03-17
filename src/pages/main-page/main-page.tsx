@@ -9,12 +9,17 @@ import { useAppSelector } from '../../hooks/use-app-selector';
 import { selectCameras } from '../../store/selectors';
 import BasketModal from '../../components/basket-modal/basket-modal';
 import useDisableBackground from '../../hooks/use-disable-background';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { selectCamera } from '../../store/catalog-slice/catalog-slice';
+
 
 function MainPage ():JSX.Element {
 
   const [isModalAddCameraToBasketOpen, setModalAddCameraToBasketOpen] = useState<boolean>(false);
   const modalRef = useRef(null);
   const camerasCatalog = useAppSelector(selectCameras);
+
+  const dispatch = useAppDispatch();
 
 
   const handleAddCameraToBasketButtonClick = () => {
@@ -23,7 +28,7 @@ function MainPage ():JSX.Element {
 
   const closeAddCameraToBasketModal = () => {
     setModalAddCameraToBasketOpen(false);
-    //dispatch(selectCamera(null));
+    dispatch(selectCamera(null));
   };
 
   useDisableBackground(isModalAddCameraToBasketOpen);

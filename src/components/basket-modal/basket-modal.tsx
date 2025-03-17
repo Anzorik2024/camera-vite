@@ -4,6 +4,8 @@ import useOnClickOutside from '../../hooks/use-on-click-outside';
 import { useKeydownEscClose } from '../../hooks/use-keydown-esc-close';
 import useInputFocus from '../../hooks/use-input-focus';
 import useTrapFocus from '../../hooks/use-trap-focus';
+import { useAppSelector } from '../../hooks/use-app-selector';
+import { getSelectCamera } from '../../store/selectors';
 
 
 type BasketModalProps = {
@@ -12,6 +14,9 @@ type BasketModalProps = {
 }
 
 function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
+  const selectedCamera = useAppSelector(getSelectCamera);
+
+  console.log(selectedCamera);
 
   const modalRef = useRef(null);
   const telInputRef = useRef<HTMLInputElement>(null);
