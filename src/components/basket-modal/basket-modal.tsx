@@ -3,6 +3,7 @@ import { useRef } from 'react';
 import useOnClickOutside from '../../hooks/use-on-click-outside';
 import { useKeydownEscClose } from '../../hooks/use-keydown-esc-close';
 import useInputFocus from '../../hooks/use-input-focus';
+import useTrapFocus from '../../hooks/use-trap-focus';
 
 
 type BasketModalProps = {
@@ -14,6 +15,7 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
 
   const modalRef = useRef(null);
   const telInputRef = useRef<HTMLInputElement>(null);
+  const buttonCloseRef = useRef<HTMLButtonElement>(null);
 
   const handleModalCloseClick = () => {
     onCloseModal();
@@ -22,6 +24,7 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
   useOnClickOutside(modalRef, handleModalCloseClick);
   useKeydownEscClose(handleModalCloseClick);
   useInputFocus(isOpen,telInputRef);
+  useTrapFocus(telInputRef, buttonCloseRef,isOpen);
 
   return (
     <div className="modal__wrapper">
@@ -64,7 +67,7 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
             </svg>Заказать
           </button>
         </div>
-        <button className="cross-btn" type="button" aria-label="Закрыть попап" onClick={handleModalCloseClick}>
+        <button className="cross-btn" type="button" aria-label="Закрыть попап" onClick={handleModalCloseClick} ref={buttonCloseRef}>
           <svg width="10" height="10" aria-hidden="true">
             <use xlinkHref="#icon-close"></use>
           </svg>

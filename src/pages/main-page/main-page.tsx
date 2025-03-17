@@ -10,7 +10,6 @@ import { selectCameras } from '../../store/selectors';
 import BasketModal from '../../components/basket-modal/basket-modal';
 import useDisableBackground from '../../hooks/use-disable-background';
 
-
 function MainPage ():JSX.Element {
 
   const [isModalAddCameraToBasketOpen, setModalAddCameraToBasketOpen] = useState<boolean>(false);
@@ -52,6 +51,7 @@ function MainPage ():JSX.Element {
             </div>
           </section>
         </div>
+
         <div className={`modal ${isModalAddCameraToBasketOpen ? 'is-active' : ''}`} ref={modalRef}>
           <BasketModal onCloseModal={closeAddCameraToBasketModal} isOpen={isModalAddCameraToBasketOpen} />
         </div>
