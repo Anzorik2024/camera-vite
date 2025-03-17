@@ -16,7 +16,7 @@ const initialState : InitialState = {
 
 
 const catalogSlice = createSlice({
-  name: 'CATALOG_DATA',
+  name: 'Catalog',
   initialState,
   reducers: {},
   extraReducers: (builder) => {

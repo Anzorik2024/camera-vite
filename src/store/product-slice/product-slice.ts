@@ -21,7 +21,7 @@ const initialState: initialStateProduct = {
 
 export const productData = createSlice({
   initialState,
-  name: 'product-data',
+  name: 'Product',
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchCameraByIdAction.fulfilled, (state, action) => {
