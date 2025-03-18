@@ -7,6 +7,7 @@ import useTrapFocus from '../../hooks/use-trap-focus';
 import { useAppSelector } from '../../hooks/use-app-selector';
 import { getSelectCamera } from '../../store/selectors';
 import BasketItemShort from '../basket-item-short/basket-item-short';
+import PhoneNumberInput from '../phone-number-input/phone-number-input';
 
 
 type BasketModalProps = {
@@ -24,6 +25,13 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
   const handleModalCloseClick = () => {
     onCloseModal();
   };
+
+
+  const handlePhoneNumberChange = (phoneNumber: string) => {
+    console.log('Стандартизованный номер:', phoneNumber);
+    // Здесь можно отправить номер на сервер или сохранить его в состоянии
+  };
+
 
   useOnClickOutside(modalRef, handleModalCloseClick);
   useKeydownEscClose(handleModalCloseClick);
@@ -43,7 +51,8 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
                 <use xlinkHref="#icon-snowflake"></use>
               </svg>
             </span>
-            <input type="tel" name="user-tel" placeholder="Введите ваш номер" required ref={telInputRef} />
+            {/* <input type="tel" name="user-tel" placeholder="Введите ваш номер" required ref={telInputRef} /> */}
+            <PhoneNumberInput onPhoneNumberChange={handlePhoneNumberChange} inputRef={telInputRef}/>
           </label>
           <p className="custom-input__error">Нужно указать номер</p>
         </div>
