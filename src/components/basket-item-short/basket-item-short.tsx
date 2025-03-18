@@ -1,5 +1,4 @@
 import { Camera } from '../../types/camera';
-import { capitalizeFirstLetter } from '../../utils/format';
 import { PhotocameraCategoryName } from '../../const/const';
 import { formatPrice } from '../../utils/format';
 
@@ -29,19 +28,21 @@ function BasketItemShort({camera} : BasketItemShortProps): JSX.Element {
           <img
             src={previewImg}
             srcSet={`${previewImg2x} 2x`}
-            width="140"
-            height="120"
+            width="140" height="120"
             alt={name}
           />
         </picture>
       </div>
       <div className="basket-item__description">
-        <p className="basket-item__title">{`${capitalizeFirstLetter(category)} «${capitalizeFirstLetter(name)}»`}</p>
+        <p className="basket-item__title">{category}{` «${name}»`}</p>
         <ul className="basket-item__list">
-          <li className="basket-item__list-item"><span className="basket-item__article">Артикул:</span> <span className="basket-item__number">{vendorCode}</span>
+          <li className="basket-item__list-item">
+            <span className="basket-item__article">Артикул:</span>
+            <span className="basket-item__number">{` ${vendorCode}`}</span>
           </li>
-          <li className="basket-item__list-item">{`${capitalizeFirstLetter(type)} ${getCategory(category).toLowerCase()}`}</li>
-          <li className="basket-item__list-item">{`${capitalizeFirstLetter(level)} уровень`}</li>
+          <li className="basket-item__list-item">{type}{`  ${getCategory(category)}`}</li>
+          <li className="basket-item__list-item">{type}{`  ${getCategory(category)}`}</li>
+          <li className="basket-item__list-item">{`${level} уровень`}</li>
         </ul>
         <p className="basket-item__price"><span className="visually-hidden">Цена:</span>{formatPrice(price)} ₽</p>
       </div>
@@ -50,3 +51,4 @@ function BasketItemShort({camera} : BasketItemShortProps): JSX.Element {
 }
 
 export default BasketItemShort;
+
