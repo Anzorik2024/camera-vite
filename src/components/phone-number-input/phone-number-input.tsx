@@ -91,7 +91,7 @@ function PhoneNumberInput({ inputRef, setIsButtonDisabled, isOpen} : PhoneNumber
     }
 
     if (rawValue.length > 16) {
-      setError('Максимальная длина номера — 12 символов. Сотрите символ');
+      setError('Номер — 12 символов. Сотрите лишние символы');
       setIsButtonDisabled(false);
       return; // Прерываем выполнение, если длина превышает 12 символов
     }
