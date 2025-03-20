@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import useOnClickOutside from '../../hooks/use-on-click-outside';
 import { useKeydownEscClose } from '../../hooks/use-keydown-esc-close';
@@ -17,6 +17,7 @@ type BasketModalProps = {
 
 function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
   const selectedCamera = useAppSelector(getSelectCamera);
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
 
   const modalRef = useRef(null);
   const telInputRef = useRef<HTMLInputElement>(null);
@@ -25,7 +26,6 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
   const handleModalCloseClick = () => {
     onCloseModal();
   };
-
 
   const handlePhoneNumberChange = (phoneNumber: string) => {
     console.log('Стандартизованный номер:', phoneNumber);
@@ -44,9 +44,9 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
       <div className="modal__content" ref={modalRef}>
         <p className="title title--h4">Свяжитесь со мной</p>
         {selectedCamera && <BasketItemShort camera={selectedCamera}/>}
-        <PhoneNumberInput onPhoneNumberChange={handlePhoneNumberChange} inputRef={telInputRef}/>
+        <PhoneNumberInput onPhoneNumberChange={handlePhoneNumberChange} inputRef={telInputRef} setIsButtonDisabled={setIsButtonDisabled}/>
         <div className="modal__buttons">
-          <button className="btn btn--purple modal__btn modal__btn--fit-width" type="button">
+          <button className="btn btn--purple modal__btn modal__btn--fit-width" type="button" disabled={!isButtonDisabled} >
             <svg width="24" height="16" aria-hidden="true">
               <use xlinkHref="#icon-add-basket"></use>
             </svg>Заказать

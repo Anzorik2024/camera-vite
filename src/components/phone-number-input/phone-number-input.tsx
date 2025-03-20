@@ -1,11 +1,12 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 
-interface Props {
+interface PhoneNumberInputProps {
   onPhoneNumberChange: (phoneNumber: string) => void;
+  setIsButtonDisabled: (isButtonDisabled: boolean) => void;
   inputRef: React.RefObject<HTMLInputElement>;
 }
 
-const PhoneNumberInput: React.FC<Props> = ({ onPhoneNumberChange, inputRef }) => {
+function PhoneNumberInput({ onPhoneNumberChange, inputRef, setIsButtonDisabled} : PhoneNumberInputProps) :JSX.Element{
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState<string | null>('Нужно указать номер');
 
@@ -94,6 +95,7 @@ const PhoneNumberInput: React.FC<Props> = ({ onPhoneNumberChange, inputRef }) =>
 
     // Отправляем на сервер стандартизованный формат
     const standardizedFormat = normalizePhoneNumber(rawValue);
+    setIsButtonDisabled(validatePhoneNumber(rawValue));
     onPhoneNumberChange(standardizedFormat);
   };
   return (
@@ -119,6 +121,6 @@ const PhoneNumberInput: React.FC<Props> = ({ onPhoneNumberChange, inputRef }) =>
     </div>
 
   );
-};
+}
 
 export default PhoneNumberInput;
