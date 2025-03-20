@@ -11,6 +11,7 @@ const selectIsLoading = (state: State) => state.catalog.isLoading;
 const selectProductCamera = (state: State) => state.product.camera;
 const selectCameraReviews = (state: State) => state.product.reviews;
 const selectProductStatus = (state: State) => state.product.status;
+const selectOrderStatus = (state: State) => state.order.status;
 
 
 const getSelectCamera = (state: State) => state.order.selectedCamera;
@@ -28,4 +29,5 @@ export {
   selectSortedReviews,
   getSelectCamera,
   getSelectPhoneOrder,
+  selectOrderStatus
 };

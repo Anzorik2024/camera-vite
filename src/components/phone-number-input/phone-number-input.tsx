@@ -10,13 +10,13 @@ interface PhoneNumberInputProps {
 
 function PhoneNumberInput({ inputRef, setIsButtonDisabled, isOpen} : PhoneNumberInputProps) :JSX.Element{
   const [inputValue, setInputValue] = useState('');
-  const [error, setError] = useState<string | null>('Нужно указать номер');
+  const [error, setError] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     setInputValue('');
-    setError('Нужно указать номер');
+    setError(null);
   }, [isOpen]);
 
   const normalizePhoneNumber = (value: string): string => {

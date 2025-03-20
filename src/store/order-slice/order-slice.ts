@@ -27,6 +27,11 @@ const orderSlice = createSlice({
     selectPhone: (state, action: PayloadAction<string|null>) => {
       state.tel = action.payload;
     },
+    resetOrder: (state) => {
+      state.selectedCamera = null;
+      state.tel = null;
+      state.status = RequestStatus.Idle;
+    }
   },
   extraReducers: (builder) => {
     builder.addCase(sendOrderAction.pending, (state) => {
@@ -44,10 +49,10 @@ const orderSlice = createSlice({
 
 
 const orderReducer = orderSlice.reducer;
-const {selectCamera, selectPhone } = orderSlice.actions;
+const {selectCamera, selectPhone, resetOrder } = orderSlice.actions;
 
 const orderSliceAction = {
   sendOrderAction
 };
 
-export { orderReducer, selectCamera, selectPhone, orderSliceAction};
+export { orderReducer, selectCamera, selectPhone, orderSliceAction, resetOrder};

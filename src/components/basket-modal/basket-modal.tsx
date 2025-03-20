@@ -9,6 +9,7 @@ import { getSelectCamera, getSelectPhoneOrder } from '../../store/selectors';
 import BasketItemShort from '../basket-item-short/basket-item-short';
 import PhoneNumberInput from '../phone-number-input/phone-number-input';
 
+
 import { orderSliceAction } from '../../store/order-slice/order-slice';
 import { useActionCreators } from '../../hooks/use-action-creators';
 import { Order } from '../../types/order';
@@ -30,7 +31,6 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
   const telInputRef = useRef<HTMLInputElement>(null);
   const buttonCloseRef = useRef<HTMLButtonElement>(null);
 
-
   const handleModalCloseClick = () => {
     onCloseModal();
   };
@@ -50,8 +50,6 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
 
       };
       sendOrderAction(sendInitialOrderData);
-      onCloseModal();
-      setIsButtonDisabled(false);
     }
   };
 
