@@ -82,7 +82,8 @@ function PhoneNumberInput({ onPhoneNumberChange, inputRef, setIsButtonDisabled} 
     }
 
     if (rawValue.length > 16) {
-      setError('Максимальная длина номера — 12 символов.');
+      setError('Максимальная длина номера — 12 символов. Сотрите символ');
+      setIsButtonDisabled(false);
       return; // Прерываем выполнение, если длина превышает 12 символов
     }
 
@@ -96,7 +97,7 @@ function PhoneNumberInput({ onPhoneNumberChange, inputRef, setIsButtonDisabled} 
     // Отправляем на сервер стандартизованный формат
     const standardizedFormat = normalizePhoneNumber(rawValue);
     setIsButtonDisabled(validatePhoneNumber(rawValue));
-    onPhoneNumberChange(standardizedFormat);
+    onPhoneNumberChange(standardizedFormat);// написать действие по передаче телефонного номера в редьюсер и сбросить значаение поля
   };
   return (
     <div className={`custom-input form-review__item ${error ? 'is-invalid' : ''}`}>
