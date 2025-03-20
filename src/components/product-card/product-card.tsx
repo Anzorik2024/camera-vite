@@ -6,7 +6,7 @@ import { formatPrice, capitalizeFirstLetter } from '../../utils/format';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import IconStar from '../icon-star/icon-star';
 import { AppRoute } from '../../const/app-route';
-import { selectCamera, toggleModal } from '../../store/order-slice/order-slice';
+import { selectCamera} from '../../store/order-slice/order-slice';
 
 type ProductCardProps = {
   camera: Camera;
@@ -23,7 +23,6 @@ function ProductCard ({camera, onAddCameraInBasketClickButton } :ProductCardProp
 
   const handleAddCameraInBasketButtonClick = () => {
     dispatch(selectCamera(camera));
-    dispatch(toggleModal());
     onAddCameraInBasketClickButton();
   };
 

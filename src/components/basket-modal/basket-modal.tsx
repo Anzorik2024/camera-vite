@@ -29,9 +29,20 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
     onCloseModal();
   };
 
+  const initialOrderData = {
+    camerasIds: [],
+    coupon: null,
+    tel: ''
+  };
+
   const handleButtonOrderClick = () => {
-    if(selectedPhone) {
-      console.log(selectedPhone);// здесь будет отправка данных на сервер
+    if(selectedPhone && selectedCamera) {
+      console.log({
+        ...initialOrderData,
+        camerasIds: [Number(selectedCamera.id)],
+        tel: selectedPhone
+      }
+      );
       onCloseModal();
       setIsButtonDisabled(false);
     }
