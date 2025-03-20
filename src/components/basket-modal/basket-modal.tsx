@@ -9,6 +9,11 @@ import { getSelectCamera, getSelectPhoneOrder } from '../../store/selectors';
 import BasketItemShort from '../basket-item-short/basket-item-short';
 import PhoneNumberInput from '../phone-number-input/phone-number-input';
 
+///////
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
+import { sendOrderAction } from '../../store/thunks/product-process/product-process';
+import { Order } from '../../types/order';
+
 
 type BasketModalProps = {
   onCloseModal: () => void;
@@ -19,6 +24,8 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
   const selectedCamera = useAppSelector(getSelectCamera);
   const selectedPhone = useAppSelector(getSelectPhoneOrder);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
+
+  const dispatch = useAppDispatch();
 
   const modalRef = useRef(null);
   const telInputRef = useRef<HTMLInputElement>(null);
@@ -37,12 +44,14 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
 
   const handleButtonOrderClick = () => {
     if(selectedPhone && selectedCamera) {
-      console.log({
+      const sendInitialOrderData : Order = {
         ...initialOrderData,
         camerasIds: [Number(selectedCamera.id)],
         tel: selectedPhone
-      }
-      );
+
+      };
+      dispatch(sendOrderAction(sendInitialOrderData));
+      console.log(sendInitialOrderData);
       onCloseModal();
       setIsButtonDisabled(false);
     }
