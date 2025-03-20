@@ -42,13 +42,12 @@ function ProductPage():JSX.Element {
     return <NotFoundPage />;
   }
 
-
   return (
     <div className="wrapper">
       <Header />
       <main>
         <div className="page-content">
-          <BreadCrumbsProduct />
+          {camera ? <BreadCrumbsProduct camera={camera}/> : null}
           <div className="page-content__section">
             {camera ? <CameraInfo camera={camera} /> : null}
           </div>

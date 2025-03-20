@@ -1,5 +1,4 @@
 import { Camera } from '../../types/camera';
-import { capitalizeFirstLetter } from '../../utils/format';
 import CameraRating from '../camera-rating/camera-rating';
 import { formatPrice } from '../../utils/format';
 import Tabs from '../tabs/tabs';
@@ -30,7 +29,7 @@ function CameraInfo ({camera}: CameraInfoProps) : JSX.Element {
           </picture>
         </div>
         <div className="product__content">
-          <h1 className="title title--h3">{`${capitalizeFirstLetter(category)} «${capitalizeFirstLetter(name)}»`}</h1>
+          <h1 className="title title--h3">{`${category} «${name}»`}</h1>
           <div className="rate product__rate">
             <CameraRating
               rating={rating}

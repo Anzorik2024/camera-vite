@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/app-route';
+import { Camera } from '../../types/camera';
 
-function BreadCrumbsProduct () : JSX.Element {
+type BreadCrumbsProductProps = {
+ camera: Camera ;
+}
+function BreadCrumbsProduct ({camera} : BreadCrumbsProductProps) : JSX.Element {
+
   return (
     <div className="breadcrumbs">
       <div className="container">
@@ -20,7 +25,7 @@ function BreadCrumbsProduct () : JSX.Element {
               </svg>
             </Link>
           </li>
-          <li className="breadcrumbs__item"><span className="breadcrumbs__link breadcrumbs__link--active">Ретрокамера «Das Auge IV»</span>
+          <li className="breadcrumbs__item"><span className="breadcrumbs__link breadcrumbs__link--active">{`${camera.category} «${camera.name}»`}</span>
           </li>
         </ul>
       </div>
