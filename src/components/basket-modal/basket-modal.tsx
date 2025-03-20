@@ -44,18 +44,7 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
       <div className="modal__content" ref={modalRef}>
         <p className="title title--h4">Свяжитесь со мной</p>
         {selectedCamera && <BasketItemShort camera={selectedCamera}/>}
-        <div className="custom-input form-review__item">
-          <label>
-            <span className="custom-input__label">Телефон
-              <svg width="9" height="9" aria-hidden="true">
-                <use xlinkHref="#icon-snowflake"></use>
-              </svg>
-            </span>
-            {/* <input type="tel" name="user-tel" placeholder="Введите ваш номер" required ref={telInputRef} /> */}
-            <PhoneNumberInput onPhoneNumberChange={handlePhoneNumberChange} inputRef={telInputRef}/>
-          </label>
-          <p className="custom-input__error">Нужно указать номер</p>
-        </div>
+        <PhoneNumberInput onPhoneNumberChange={handlePhoneNumberChange} inputRef={telInputRef}/>
         <div className="modal__buttons">
           <button className="btn btn--purple modal__btn modal__btn--fit-width" type="button">
             <svg width="24" height="16" aria-hidden="true">
