@@ -6,12 +6,14 @@ import { Camera } from '../../types/camera';
 type InitialState = {
   selectedCamera: Camera | null;
   tel: string | null;
+  isOpen: boolean;
   isLoading: boolean;
 };
 
 const initialState : InitialState = {
   selectedCamera: null,
   tel: null,
+  isOpen: false,
   isLoading: false,
 };
 
@@ -25,6 +27,9 @@ const orderSlice = createSlice({
     selectPhone: (state, action: PayloadAction<string|null>) => {
       state.tel = action.payload;
     },
+    toggleModal: (state) => {
+      state.isOpen = !state.isOpen;
+    }
   },
 });
 

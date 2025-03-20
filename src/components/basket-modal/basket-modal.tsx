@@ -24,20 +24,17 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
   const telInputRef = useRef<HTMLInputElement>(null);
   const buttonCloseRef = useRef<HTMLButtonElement>(null);
 
-  console.log(selectedPhone);
 
   const handleModalCloseClick = () => {
     onCloseModal();
   };
 
-  const handlePhoneNumberChange = () => {
-    //console.log('Стандартизованный номер:', phoneNumber);
-
-
-    //console.log('номер из стейта:',selectedPhone);
-    // Здесь можно отправить номер на сервер или сохранить его в состоянии
+  const handleButtonOrderClick = () => {
+    if(selectedPhone) {
+      console.log(selectedPhone);// здесь будет отправка данных на сервер
+      onCloseModal();
+    }
   };
-
 
   useOnClickOutside(modalRef, handleModalCloseClick);
   useKeydownEscClose(handleModalCloseClick);
@@ -50,9 +47,9 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
       <div className="modal__content" ref={modalRef}>
         <p className="title title--h4">Свяжитесь со мной</p>
         {selectedCamera && <BasketItemShort camera={selectedCamera}/>}
-        <PhoneNumberInput onPhoneNumberChange={handlePhoneNumberChange} inputRef={telInputRef} setIsButtonDisabled={setIsButtonDisabled}/>
+        <PhoneNumberInput inputRef={telInputRef} setIsButtonDisabled={setIsButtonDisabled} isOpen={isOpen}/>
         <div className="modal__buttons">
-          <button className="btn btn--purple modal__btn modal__btn--fit-width" type="button" disabled={!isButtonDisabled} >
+          <button className="btn btn--purple modal__btn modal__btn--fit-width" type="button" onClick={handleButtonOrderClick} disabled={!isButtonDisabled} >
             <svg width="24" height="16" aria-hidden="true">
               <use xlinkHref="#icon-add-basket"></use>
             </svg>Заказать
