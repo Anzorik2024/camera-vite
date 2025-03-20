@@ -30,7 +30,7 @@ function PhoneNumberInput({ inputRef, setIsButtonDisabled, isOpen} : PhoneNumber
   const formatPhoneNumber = (value: string): string => {
     const normalizedValue = normalizePhoneNumber(value);
     if (normalizedValue.length <= 2) {
-      return normalizedValue; // +7
+      return normalizedValue;
     }
 
     if (normalizedValue.length <= 5) {
