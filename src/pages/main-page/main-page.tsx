@@ -10,10 +10,9 @@ import { selectCameras } from '../../store/selectors';
 import BasketModal from '../../components/basket-modal/basket-modal';
 import useDisableBackground from '../../hooks/use-disable-background';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { resetOrder, selectCamera } from '../../store/order-slice/order-slice';
+import { resetOrder} from '../../store/order-slice/order-slice';
 import { selectOrderStatus } from '../../store/selectors';
 import { RequestStatus } from '../../const/request-status';
-
 
 function MainPage ():JSX.Element {
 
@@ -29,8 +28,7 @@ function MainPage ():JSX.Element {
       setModalAddCameraToBasketOpen(false);
       dispatch(resetOrder());
     }
-  }, [isOrderStatus,dispatch]);
-
+  }, [isOrderStatus, dispatch]);
 
   const handleAddCameraToBasketButtonClick = () => {
     setModalAddCameraToBasketOpen(true);
@@ -38,7 +36,7 @@ function MainPage ():JSX.Element {
 
   const closeAddCameraToBasketModal = () => {
     setModalAddCameraToBasketOpen(false);
-    dispatch(selectCamera(null));
+    dispatch(resetOrder());
   };
 
   useDisableBackground(isModalAddCameraToBasketOpen);
