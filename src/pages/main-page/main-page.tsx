@@ -10,7 +10,7 @@ import { selectCameras } from '../../store/selectors';
 import BasketModal from '../../components/basket-modal/basket-modal';
 import useDisableBackground from '../../hooks/use-disable-background';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { selectCamera } from '../../store/catalog-slice/catalog-slice';
+import { selectCamera } from '../../store/order-slice/order-slice';
 
 
 function MainPage ():JSX.Element {
