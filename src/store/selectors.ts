@@ -15,6 +15,7 @@ const selectProductStatus = (state: State) => state.product.status;
 
 const getSelectCamera = (state: State) => state.order.selectedCamera;
 const getSelectPhoneOrder = (state: State) => state.order.tel;
+const selectIsOpenOrderModal = (state: State) => state.order.isOpen;
 
 
 const selectAdaptedReviews = createSelector(selectCameraReviews, (reviews: Reviews) => reviews.map(adaptReview));
@@ -28,5 +29,6 @@ export {
   selectCameraReviews,
   selectSortedReviews,
   getSelectCamera,
-  getSelectPhoneOrder
+  getSelectPhoneOrder,
+  selectIsOpenOrderModal
 };

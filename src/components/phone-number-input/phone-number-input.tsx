@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { selectPhone } from '../../store/order-slice/order-slice';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 
 interface PhoneNumberInputProps {
   setIsButtonDisabled: (isButtonDisabled: boolean) => void;
-  inputRef: React.RefObject<HTMLInputElement>;
   isOpen: boolean;
+  inputRef: React.RefObject<HTMLInputElement>;
 }
 
-function PhoneNumberInput({ inputRef, setIsButtonDisabled, isOpen } : PhoneNumberInputProps) :JSX.Element{
+function PhoneNumberInput({ inputRef, setIsButtonDisabled, isOpen} : PhoneNumberInputProps) :JSX.Element{
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState<string | null>('Нужно указать номер');
 
-  console.log(isOpen);
-
-
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setInputValue('');
+    setError('Нужно указать номер');
+  }, [isOpen]);
 
   const normalizePhoneNumber = (value: string): string => {
     // Удаляем все символы, кроме цифр

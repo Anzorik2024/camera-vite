@@ -35,6 +35,6 @@ const orderSlice = createSlice({
 
 
 const orderReducer = orderSlice.reducer;
-const {selectCamera, selectPhone } = orderSlice.actions;
+const {selectCamera, selectPhone, toggleModal } = orderSlice.actions;
 
-export { orderReducer, selectCamera, selectPhone };
+export { orderReducer, selectCamera, selectPhone, toggleModal };
