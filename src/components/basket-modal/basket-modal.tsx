@@ -9,9 +9,8 @@ import { getSelectCamera, getSelectPhoneOrder } from '../../store/selectors';
 import BasketItemShort from '../basket-item-short/basket-item-short';
 import PhoneNumberInput from '../phone-number-input/phone-number-input';
 
-///////
-import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { sendOrderAction } from '../../store/thunks/product-process/product-process';
+import { orderSliceAction } from '../../store/order-slice/order-slice';
+import { useActionCreators } from '../../hooks/use-action-creators';
 import { Order } from '../../types/order';
 
 
@@ -25,7 +24,7 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
   const selectedPhone = useAppSelector(getSelectPhoneOrder);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
 
-  const dispatch = useAppDispatch();
+  const {sendOrderAction} = useActionCreators(orderSliceAction);
 
   const modalRef = useRef(null);
   const telInputRef = useRef<HTMLInputElement>(null);
@@ -50,8 +49,7 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
         tel: selectedPhone
 
       };
-      dispatch(sendOrderAction(sendInitialOrderData));
-      console.log(sendInitialOrderData);
+      sendOrderAction(sendInitialOrderData);
       onCloseModal();
       setIsButtonDisabled(false);
     }

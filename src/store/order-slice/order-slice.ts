@@ -1,18 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { sendOrderAction } from '../thunks/product-process/product-process';
 
 import { Camera } from '../../types/camera';
+import { RequestStatus } from '../../const/request-status';
 
 
 type InitialState = {
   selectedCamera: Camera | null;
   tel: string | null;
-  isLoading: boolean;
+  status: RequestStatus;
 };
 
 const initialState : InitialState = {
   selectedCamera: null,
   tel: null,
-  isLoading: false,
+  status: RequestStatus.Idle
 };
 
 const orderSlice = createSlice({
@@ -26,10 +28,26 @@ const orderSlice = createSlice({
       state.tel = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(sendOrderAction.pending, (state) => {
+      state.status = RequestStatus.Loading;
+    });
+    builder.addCase(sendOrderAction.fulfilled, (state) => {
+      state.status = RequestStatus.Success;
+    });
+    builder.addCase(sendOrderAction.rejected, (state) => {
+      state.status = RequestStatus.Failed;
+    });
+  }
+
 });
 
 
 const orderReducer = orderSlice.reducer;
 const {selectCamera, selectPhone } = orderSlice.actions;
 
-export { orderReducer, selectCamera, selectPhone};
+const orderSliceAction = {
+  sendOrderAction
+};
+
+export { orderReducer, selectCamera, selectPhone, orderSliceAction};
