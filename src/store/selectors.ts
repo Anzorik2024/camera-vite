@@ -12,7 +12,7 @@ const selectProductCamera = (state: State) => state.product.camera;
 const selectCameraReviews = (state: State) => state.product.reviews;
 const selectProductStatus = (state: State) => state.product.status;
 
-const getSelectCamera = (state: State) => state.catalog.selectedCamera;
+const getSelectCamera = (state: State) => state.order.selectedCamera;
 
 const selectAdaptedReviews = createSelector(selectCameraReviews, (reviews: Reviews) => reviews.map(adaptReview));
 const selectSortedReviews = createSelector(selectAdaptedReviews, (reviews: ReviewsAdapt) => reviews.sort(sortReviewByTime));
