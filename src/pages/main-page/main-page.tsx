@@ -1,4 +1,4 @@
-import { useState, useRef } from'react';
+import { useState, useRef, useEffect } from'react';
 
 import Header from '../../components/header/header';
 import Banner from '../../components/banner/banner';
@@ -10,7 +10,9 @@ import { selectCameras } from '../../store/selectors';
 import BasketModal from '../../components/basket-modal/basket-modal';
 import useDisableBackground from '../../hooks/use-disable-background';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { selectCamera } from '../../store/order-slice/order-slice';
+import { resetOrder, selectCamera } from '../../store/order-slice/order-slice';
+import { selectOrderStatus } from '../../store/selectors';
+import { RequestStatus } from '../../const/request-status';
 
 
 function MainPage ():JSX.Element {
@@ -19,7 +21,15 @@ function MainPage ():JSX.Element {
   const modalRef = useRef(null);
   const camerasCatalog = useAppSelector(selectCameras);
 
+  const isOrderStatus = useAppSelector(selectOrderStatus);
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if(isOrderStatus === RequestStatus.Success) {
+      setModalAddCameraToBasketOpen(false);
+      dispatch(resetOrder());
+    }
+  }, [isOrderStatus,dispatch]);
 
 
   const handleAddCameraToBasketButtonClick = () => {
