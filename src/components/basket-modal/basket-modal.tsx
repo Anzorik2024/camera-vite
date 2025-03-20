@@ -33,6 +33,7 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
     if(selectedPhone) {
       console.log(selectedPhone);// здесь будет отправка данных на сервер
       onCloseModal();
+      setIsButtonDisabled(false);
     }
   };
 
