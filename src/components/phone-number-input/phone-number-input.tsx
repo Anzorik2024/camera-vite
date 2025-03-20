@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import { selectPhone } from '../../store/order-slice/order-slice';
+import { useAppDispatch } from '../../hooks/use-app-dispatch';
 
 interface PhoneNumberInputProps {
-  onPhoneNumberChange: (phoneNumber: string) => void;
   setIsButtonDisabled: (isButtonDisabled: boolean) => void;
   inputRef: React.RefObject<HTMLInputElement>;
 }
 
-function PhoneNumberInput({ onPhoneNumberChange, inputRef, setIsButtonDisabled} : PhoneNumberInputProps) :JSX.Element{
+function PhoneNumberInput({ inputRef, setIsButtonDisabled} : PhoneNumberInputProps) :JSX.Element{
   const [inputValue, setInputValue] = useState('');
   const [error, setError] = useState<string | null>('Нужно указать номер');
+
+  const dispatch = useAppDispatch();
 
   const normalizePhoneNumber = (value: string): string => {
     // Удаляем все символы, кроме цифр
@@ -97,7 +100,10 @@ function PhoneNumberInput({ onPhoneNumberChange, inputRef, setIsButtonDisabled} 
     // Отправляем на сервер стандартизованный формат
     const standardizedFormat = normalizePhoneNumber(rawValue);
     setIsButtonDisabled(validatePhoneNumber(rawValue));
-    onPhoneNumberChange(standardizedFormat);// написать действие по передаче телефонного номера в редьюсер и сбросить значаение поля
+
+    if(validatePhoneNumber(rawValue)) {
+      dispatch(selectPhone(standardizedFormat));
+    }
   };
   return (
     <div className={`custom-input form-review__item ${error ? 'is-invalid' : ''}`}>

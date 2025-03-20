@@ -6,7 +6,6 @@ import { formatPrice, capitalizeFirstLetter } from '../../utils/format';
 import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import IconStar from '../icon-star/icon-star';
 import { AppRoute } from '../../const/app-route';
-//import { selectCamera } from '../../store/catalog-slice/catalog-slice';
 import { selectCamera } from '../../store/order-slice/order-slice';
 
 type ProductCardProps = {

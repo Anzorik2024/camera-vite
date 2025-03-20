@@ -12,7 +12,10 @@ const selectProductCamera = (state: State) => state.product.camera;
 const selectCameraReviews = (state: State) => state.product.reviews;
 const selectProductStatus = (state: State) => state.product.status;
 
+
 const getSelectCamera = (state: State) => state.order.selectedCamera;
+const getSelectPhoneOrder = (state: State) => state.order.tel;
+
 
 const selectAdaptedReviews = createSelector(selectCameraReviews, (reviews: Reviews) => reviews.map(adaptReview));
 const selectSortedReviews = createSelector(selectAdaptedReviews, (reviews: ReviewsAdapt) => reviews.sort(sortReviewByTime));
@@ -24,5 +27,6 @@ export {
   selectProductCamera,
   selectCameraReviews,
   selectSortedReviews,
-  getSelectCamera
+  getSelectCamera,
+  getSelectPhoneOrder
 };

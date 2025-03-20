@@ -5,7 +5,7 @@ import { useKeydownEscClose } from '../../hooks/use-keydown-esc-close';
 import useInputFocus from '../../hooks/use-input-focus';
 import useTrapFocus from '../../hooks/use-trap-focus';
 import { useAppSelector } from '../../hooks/use-app-selector';
-import { getSelectCamera } from '../../store/selectors';
+import { getSelectCamera, getSelectPhoneOrder } from '../../store/selectors';
 import BasketItemShort from '../basket-item-short/basket-item-short';
 import PhoneNumberInput from '../phone-number-input/phone-number-input';
 
@@ -17,18 +17,24 @@ type BasketModalProps = {
 
 function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
   const selectedCamera = useAppSelector(getSelectCamera);
+  const selectedPhone = useAppSelector(getSelectPhoneOrder);
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
 
   const modalRef = useRef(null);
   const telInputRef = useRef<HTMLInputElement>(null);
   const buttonCloseRef = useRef<HTMLButtonElement>(null);
 
+  console.log(selectedPhone);
+
   const handleModalCloseClick = () => {
     onCloseModal();
   };
 
-  const handlePhoneNumberChange = (phoneNumber: string) => {
-    console.log('Стандартизованный номер:', phoneNumber);
+  const handlePhoneNumberChange = () => {
+    //console.log('Стандартизованный номер:', phoneNumber);
+
+
+    //console.log('номер из стейта:',selectedPhone);
     // Здесь можно отправить номер на сервер или сохранить его в состоянии
   };
 
