@@ -1,12 +1,13 @@
-import { datatype, commerce, image, internet, lorem } from 'faker';
+import { datatype, commerce, image, internet, lorem, phone } from 'faker';
 import MockAdapter from 'axios-mock-adapter';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import { Action, ThunkDispatch } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 
-import { Camera } from '../types/camera';
+import { Camera, Review } from '../types/camera';
 import { State } from '../types/state/state';
 import { createAPI } from '../services/api';
+import { Order } from '../types/order';
 
 
 const makeFakeCamera = (): Camera => ({
@@ -40,4 +41,27 @@ ThunkDispatch<State, typeof api, Action>
 >(middlewares);
 
 export const fakeId = '5';
+
+export const makeFakeReview = (): Review => ({
+  id: datatype.string(),
+  userName: internet.userName(),
+  advantage: lorem.sentence(),
+  disadvantage: lorem.sentence(),
+  review: lorem.paragraph(),
+  rating: datatype.number({ min: 1, max: 5, precision: 0.01 }),
+  cameraId: datatype.number(),
+  createAt: datatype.string(),
+});
+
+export const fakeReview = makeFakeReview();
+
+export const fakeReviews = Array.from({length: 15}, makeFakeReview);
+
+export const makeFakeOrder = (): Order => ({
+  camerasIds: [datatype.number({ min: 1, max: 100 })],
+  coupon: null,
+  tel: phone.phoneNumber(),
+});
+
+export const fakeOrder = makeFakeOrder();
 
