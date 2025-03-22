@@ -56,6 +56,7 @@ const productDataReducer = productData.reducer;
 
 export {
   productDataActions,
-  productDataReducer
+  productDataReducer,
+  initialState
 };
 
