@@ -13,7 +13,8 @@ import { useAppDispatch } from '../../hooks/use-app-dispatch';
 import { resetOrder} from '../../store/order-slice/order-slice';
 import { selectOrderStatus } from '../../store/selectors';
 import { RequestStatus } from '../../const/request-status';
-
+import { toast} from 'react-toastify';
+import { WarningMessage } from '../../const/warning-message';
 function MainPage ():JSX.Element {
 
   const [isModalAddCameraToBasketOpen, setModalAddCameraToBasketOpen] = useState<boolean>(false);
@@ -24,11 +25,15 @@ function MainPage ():JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if(isOrderStatus === RequestStatus.Success) {
+    if (isOrderStatus === RequestStatus.Success) {
       setModalAddCameraToBasketOpen(false);
       dispatch(resetOrder());
     }
+    if (isOrderStatus === RequestStatus.Failed) {
+      toast.error(WarningMessage.PhoneSendError);
+    }
   }, [isOrderStatus, dispatch]);
+
 
   const handleAddCameraToBasketButtonClick = () => {
     setModalAddCameraToBasketOpen(true);
