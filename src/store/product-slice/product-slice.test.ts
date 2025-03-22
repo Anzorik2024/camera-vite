@@ -1,6 +1,6 @@
 import { initialState, productDataReducer } from './product-slice';
-import { fetchCameraByIdAction } from '../thunks/product-process/product-process';
-import { fakeCamera } from '../../utils/mock';
+import { fetchCameraByIdAction, fetchCameraReviews } from '../thunks/product-process/product-process';
+import { fakeCamera, fakeReviews } from '../../utils/mock';
 
 
 import { Camera, Reviews } from '../../types/camera';
@@ -31,8 +31,20 @@ describe('Reducer: catalogData', () => {
     expect(productDataReducer(state, {type: fetchCameraByIdAction.pending.type}))
       .toEqual({...state, status: RequestStatus.Loading });
   });
-  it('should change status status to Failed if fetchCameraByIdAction rejected', () => {
+  it('should change status to Failed if fetchCameraByIdAction rejected', () => {
     expect(productDataReducer(state, {type: fetchCameraByIdAction.rejected.type}))
+      .toEqual({...state, status: RequestStatus.Failed});
+  });
+  it('should update reviews and change  status if fetchCameraReviews fulfiled', () => {
+    expect(productDataReducer(state, {type: fetchCameraReviews.fulfilled.type, payload: fakeReviews}))
+      .toEqual({...state, reviews: fakeReviews, status: RequestStatus.Success});
+  });
+  it('should change status to Loading if reviews fetchCameraReviews pending', () => {
+    expect(productDataReducer(state, {type: fetchCameraReviews.pending.type}))
+      .toEqual({...state, status: RequestStatus.Loading });
+  });
+  it('should change status  to Failed if fetchCameraReviews rejected', () => {
+    expect(productDataReducer(state, {type: fetchCameraReviews.rejected.type}))
       .toEqual({...state, status: RequestStatus.Failed});
   });
 });
