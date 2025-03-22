@@ -22,4 +22,21 @@ describe('Asynk actions: test', () => {
 
     expect(payload).toEqual(fakeCameras);
   });
+  it('fetchAllCameraAction should not return cameras if server return 400', async() => {
+    mockApi
+      .onGet(ApiRoute.Cameras)
+      .reply(400, fakeCameras);
+
+    const store = mockStore();
+    expect(store.getActions()).toEqual([]);
+
+    await store.dispatch(fetchAllCameraAction());
+
+    const actions = store.getActions().map(({type}) => type);
+
+    expect(actions).toEqual([
+      fetchAllCameraAction.pending.type,
+      fetchAllCameraAction.rejected.type
+    ]);
+  });
 });
