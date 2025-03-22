@@ -39,3 +39,5 @@ Action<string>,
 ThunkDispatch<State, typeof api, Action>
 >(middlewares);
 
+export const fakeId = '5';
+
