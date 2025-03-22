@@ -55,4 +55,4 @@ const orderSliceAction = {
   sendOrderAction
 };
 
-export { orderReducer, selectCamera, selectPhone, orderSliceAction, resetOrder};
+export { orderReducer, selectCamera, selectPhone, orderSliceAction, resetOrder, initialState};
