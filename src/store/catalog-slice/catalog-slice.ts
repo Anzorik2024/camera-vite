@@ -4,7 +4,7 @@ import { fetchAllCameraAction } from '../thunks/catalog-process/catalog-process'
 import { Cameras } from '../../types/camera';
 
 
-type InitialState = {
+ type InitialState = {
   cameras: Cameras | [];
   isLoading: boolean;
 };
@@ -40,5 +40,5 @@ const catalogReducerAction = {
   fetchAllCameraAction,
 };
 
-export { catalogReducer, catalogReducerAction };
+export { catalogReducer, catalogReducerAction, initialState };
 

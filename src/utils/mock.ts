@@ -64,4 +64,4 @@ export const makeFakeOrder = (): Order => ({
 });
 
 export const fakeOrder = makeFakeOrder();
-
+export const UNKNOWN_ACTION = {type: 'UNKNOWN_ACTION'};
