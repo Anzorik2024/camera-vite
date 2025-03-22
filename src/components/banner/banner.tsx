@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const/app-route';
 
 function Banner ():JSX.Element {
-  const id = 1; // Replace with actual product id
+  const PRODUCT_ID = 1;
   return (
     <div className="banner">
       <picture>
@@ -25,7 +25,7 @@ function Banner ():JSX.Element {
         <span className="banner__message">Новинка!</span>
         <span className="title title--h1">Cannonball&nbsp;Pro&nbsp;MX&nbsp;8i</span>
         <span className="banner__text">Профессиональная камера от&nbsp;известного производителя</span>
-        <Link className="btn" to = {`${AppRoute.Product}/${id}`}>Подробнее</Link>
+        <Link className="btn" to = {`${AppRoute.Product}/${PRODUCT_ID}`}>Подробнее</Link>
       </p>
     </div>
   );
