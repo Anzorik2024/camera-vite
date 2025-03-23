@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import PhoneNumberInput from './phone-number-input';
 import { Provider} from 'react-redux';
 import userEvent from '@testing-library/user-event';
