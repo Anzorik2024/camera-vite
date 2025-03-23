@@ -9,7 +9,7 @@ import { useActionCreators } from '../../hooks/use-action-creators';
 import { productDataActions } from '../../store/product-slice/product-slice';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
-import BreadCrumbsProduct from '../../components/bread-crumbs/bread-crumbs-product';
+import BreadCrumbsProduct from '../../components/bread-crumbs-product/bread-crumbs-product';
 import NotFoundPage from '../not-found-page/not-found-page';
 import CameraInfo from '../../components/camera-info/camera-info';
 import ReviewBlock from '../../components/review-block/review-block';

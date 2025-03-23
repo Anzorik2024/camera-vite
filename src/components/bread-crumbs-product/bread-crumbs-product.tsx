@@ -8,7 +8,7 @@ type BreadCrumbsProductProps = {
 function BreadCrumbsProduct ({camera} : BreadCrumbsProductProps) : JSX.Element {
 
   return (
-    <div className="breadcrumbs">
+    <div className="breadcrumbs" data-testid="breadcrumbs-container">
       <div className="container">
         <ul className="breadcrumbs__list">
           <li className="breadcrumbs__item">

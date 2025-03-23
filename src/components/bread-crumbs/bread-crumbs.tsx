@@ -3,7 +3,7 @@ import { AppRoute } from '../../const/app-route';
 function BreadCrumbs () : JSX.Element {
   return (
     <div className="breadcrumbs">
-      <div className="container">
+      <div className="container" data-testid="breadcrumbs-container">
         <ul className="breadcrumbs__list">
           <li className="breadcrumbs__item">
             <Link className="breadcrumbs__link" to={AppRoute.Main}>Главная
