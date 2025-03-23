@@ -59,7 +59,7 @@ function BasketModal({ onCloseModal, isOpen}: BasketModalProps) : JSX.Element {
   useTrapFocus(telInputRef, buttonCloseRef,isOpen);
 
   return (
-    <div className="modal__wrapper">
+    <div className="modal__wrapper" data-testid='basket-modal'>
       <div className="modal__overlay"></div>
       <div className="modal__content" ref={modalRef}>
         <p className="title title--h4">Свяжитесь со мной</p>
