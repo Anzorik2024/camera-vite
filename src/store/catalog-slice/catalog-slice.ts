@@ -41,4 +41,3 @@ const catalogReducerAction = {
 };
 
 export { catalogReducer, catalogReducerAction, initialState };
-

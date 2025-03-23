@@ -41,7 +41,6 @@ function BasketItemShort({camera} : BasketItemShortProps): JSX.Element {
             <span className="basket-item__number">{` ${vendorCode}`}</span>
           </li>
           <li className="basket-item__list-item">{type}{`  ${getCategory(category)}`}</li>
-          <li className="basket-item__list-item">{type}{`  ${getCategory(category)}`}</li>
           <li className="basket-item__list-item">{`${level} уровень`}</li>
         </ul>
         <p className="basket-item__price"><span className="visually-hidden">Цена:</span>{formatPrice(price)} ₽</p>

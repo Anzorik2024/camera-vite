@@ -68,3 +68,4 @@ export const fakeOrder = makeFakeOrder();
 export const UNKNOWN_ACTION = {type: 'UNKNOWN_ACTION'};
 
 export const fakePhoneNumber = phone.phoneNumber();
+
