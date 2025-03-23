@@ -112,6 +112,7 @@ function PhoneNumberInput({ inputRef, setIsButtonDisabled, isOpen} : PhoneNumber
           value={inputValue}
           onChange={handleChange}
           onBlur={handleBlur}
+          data-testid="input-phone"
         />
       </label>
       {error && <p className="custom-input__error">{error}</p>}
