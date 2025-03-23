@@ -1,37 +1,25 @@
+
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const/app-route';
+import SocialList from '../social-list/social-list';
 function Footer() : JSX.Element {
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer__info">
-          <a className="footer__logo" href="index.html" aria-label="Переход на главную">
-            <svg width="100" height="36" aria-hidden="true">
-              <use xlinkHref="#icon-logo-mono"></use>
+          <Link
+            className="footer__logo"
+            to={AppRoute.Main}
+            aria-label="Переход на главную"
+            title="На главную"
+            data-testid="link"
+          >
+            <svg width={100} height={36} aria-hidden="true">
+              <use xlinkHref="#icon-logo-mono" />
             </svg>
-          </a>
+          </Link>
           <p className="footer__description">Интернет-магазин фото- и видеотехники</p>
-          <ul className="social">
-            <li className="social__item">
-              <a className="link" href="#" aria-label="Переход на страницу вконтатке">
-                <svg width="20" height="20" aria-hidden="true">
-                  <use xlinkHref="#icon-vk"></use>
-                </svg>
-              </a>
-            </li>
-            <li className="social__item">
-              <a className="link" href="#" aria-label="Переход на страницу pinterest">
-                <svg width="20" height="20" aria-hidden="true">
-                  <use xlinkHref="#icon-pinterest"></use>
-                </svg>
-              </a>
-            </li>
-            <li className="social__item">
-              <a className="link" href="#" aria-label="Переход на страницу reddit">
-                <svg width="20" height="20" aria-hidden="true">
-                  <use xlinkHref="#icon-reddit"></use>
-                </svg>
-              </a>
-            </li>
-          </ul>
+          <SocialList/>
         </div>
         <ul className="footer__nav">
           <li className="footer__nav-item">

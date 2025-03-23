@@ -4,3 +4,4 @@ export enum PhotocameraCategoryName {
   Photocamera = 'Фотоаппарат',
   ModalPhotocamera = 'Фотокамера'
 }
+
