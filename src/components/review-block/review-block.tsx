@@ -8,7 +8,7 @@ function ReviewBlock(): JSX.Element {
     <section className="review-block">
       <div className="container">
         <div className="page-content__headed">
-          <h2 className="title title--h3">Отзывы</h2>
+          <h2 className="title title--h3" data-testid="title-review">Отзывы</h2>
         </div>
         {reviews.length > 0 && <ReviewsList reviews={reviews}/>}
       </div>
